@@ -663,53 +663,6 @@ button:focus-visible {
   border-radius: 2px;
 }
 
-/* ----------------------------------------------------------- Glow cursor */
-
-html.has-glow-cursor,
-html.has-glow-cursor * {
-  cursor: none !important;
-}
-
-.cursor-dot,
-.cursor-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0;
-  transition: opacity 240ms ease;
-  will-change: transform;
-}
-
-.cursor-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 6px var(--accent), 0 0 12px color-mix(in srgb, var(--accent) 60%, transparent);
-}
-
-.cursor-glow {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 55%, transparent), transparent 68%);
-  filter: blur(5px);
-  transition: opacity 240ms ease, width 220ms ease, height 220ms ease, background 220ms ease;
-}
-
-.cursor-glow.is-link {
-  width: 56px;
-  height: 56px;
-  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 70%, transparent), transparent 70%);
-}
-
-.cursor-glow.is-down {
-  width: 22px;
-  height: 22px;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

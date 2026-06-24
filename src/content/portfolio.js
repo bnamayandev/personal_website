@@ -41,7 +41,7 @@ export const skillGroups = [
 export const experiences = [
   {
     role: "Software Developer Intern",
-    company: "RBC",
+    company: "Royal Bank of Canada",
     location: "Toronto, Ontario",
     start: "2026-01",
     end: "present",

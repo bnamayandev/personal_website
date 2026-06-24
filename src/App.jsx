@@ -8,7 +8,6 @@ import HeroSection from './features/portfolio/HeroSection'
 import StackSection from './features/portfolio/LanguagesSection'
 import ProjectsSection from './features/portfolio/ProjectsSection'
 import AsciiBackground from './features/background/AsciiBackground'
-import GlowCursor from './shared/components/GlowCursor'
 import ColorOfTheDay from './shared/components/ColorOfTheDay'
 import { experiences, projects, skillGroups, socialLinks } from './content/portfolio'
 
@@ -55,7 +54,6 @@ function App() {
   return (
     <div className="page">
       <AsciiBackground />
-      <GlowCursor />
       <div className="container">
         <TopNav />
 
