@@ -1,20 +1,40 @@
 import RevealSection from '../../shared/components/RevealSection'
+import SectionHeading from '../../shared/components/SectionHeading'
 
-function ContactSection() {
+const directContacts = [
+  { label: 'Email', value: 'benjaminnamayandeh@gmail.com', href: 'mailto:benjaminnamayandeh@gmail.com' },
+  { label: 'Mobile', value: '(647) 607-0275', href: 'tel:16476070275' },
+]
+
+function ContactSection({ number, socialLinks = [] }) {
+  const rows = [
+    ...directContacts,
+    ...socialLinks.map((link) => ({
+      label: link.label,
+      value: link.href.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''),
+      href: link.href,
+      external: true,
+    })),
+  ]
+
   return (
-    <RevealSection as="footer" className="site-footer" id="contact" immediate>
-      <p className="site-footer-note">Contact</p>
+    <RevealSection as="section" className="section" id="contact">
+      <SectionHeading number={number} title="Contact" />
 
-      <div className="site-footer-contacts">
-        <a className="site-footer-link" href="mailto:benjaminnamayandeh@gmail.com">
-          <span>Email</span>
-          <strong>benjaminnamayandeh@gmail.com</strong>
-        </a>
-
-        <a className="site-footer-link" href="tel:16476070275">
-          <span>Mobile</span>
-          <strong>(647) 607-0275</strong>
-        </a>
+      <div className="contact">
+        {rows.map((row) => (
+          <div key={row.label} className="contact-row">
+            <span className="contact-label">{row.label}</span>
+            <a
+              className="contact-value"
+              href={row.href}
+              target={row.external ? '_blank' : undefined}
+              rel={row.external ? 'noreferrer' : undefined}
+            >
+              {row.value}
+            </a>
+          </div>
+        ))}
       </div>
     </RevealSection>
   )

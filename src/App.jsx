@@ -1,42 +1,75 @@
-import BackgroundScene from './features/background/BackgroundScene'
+import { Link, Route, Routes } from 'react-router-dom'
+
 import BajaEcomPage from './features/bajaecom/BajaEcomPage'
+import InterestsPage from './features/interests/InterestsPage'
 import ContactSection from './features/portfolio/ContactSection'
 import ExperienceSection from './features/portfolio/ExperienceSection'
 import HeroSection from './features/portfolio/HeroSection'
-import LanguagesSection from './features/portfolio/LanguagesSection'
+import StackSection from './features/portfolio/LanguagesSection'
 import ProjectsSection from './features/portfolio/ProjectsSection'
+import GlowCursor from './shared/components/GlowCursor'
+import ColorOfTheDay from './shared/components/ColorOfTheDay'
 import { experiences, projects, skillGroups, socialLinks } from './content/portfolio'
 
-function App() {
-  const normalizedPath = window.location.pathname.replace(/\/$/, '') || '/'
-  const isBajaEcomPage = normalizedPath === '/bajaecom'
+const resumeHref = '/resume.pdf'
 
+function TopNav() {
   return (
-    <div className="page-shell">
-      <BackgroundScene />
+    <nav className="topnav" aria-label="Primary">
+      <Link className="topnav-mark" to="/">benjamin namayandeh</Link>
+      <div className="topnav-links">
+        <Link className="topnav-link" to="/interests">interests</Link>
+        {socialLinks.map((link) => (
+          <a
+            key={link.label}
+            className="topnav-link"
+            href={link.href}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {link.label.toLowerCase()}
+          </a>
+        ))}
+        <a className="topnav-link" href={resumeHref} target="_blank" rel="noreferrer">
+          résumé
+        </a>
+      </div>
+    </nav>
+  )
+}
 
-      <div className="background-glow glow-one" />
-      <div className="background-glow glow-two" />
+function HomePage() {
+  return (
+    <main>
+      <HeroSection resumeHref={resumeHref} />
+      <ExperienceSection number="01" experiences={experiences} />
+      <ProjectsSection number="02" projects={projects} />
+      <ContactSection number="03" socialLinks={socialLinks} />
+      <StackSection number="04" skillGroups={skillGroups} />
+    </main>
+  )
+}
 
-      <main id={isBajaEcomPage ? 'bajaecom' : 'home'} className="page-content">
-        <div className="portfolio-suite">
-          {isBajaEcomPage ? (
-            <BajaEcomPage />
-          ) : (
-            <>
-              <HeroSection socialLinks={socialLinks} />
-              <div className="section-divider" aria-hidden="true" />
-              <LanguagesSection skillGroups={skillGroups} />
-              <div className="section-divider" aria-hidden="true" />
-              <ExperienceSection experiences={experiences} />
-              <div className="section-divider" aria-hidden="true" />
-              <ProjectsSection projects={projects} />
-              <div className="section-divider" aria-hidden="true" />
-              <ContactSection />
-            </>
-          )}
-        </div>
-      </main>
+function App() {
+  return (
+    <div className="page">
+      <GlowCursor />
+      <div className="container">
+        <TopNav />
+
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/bajaecom" element={<BajaEcomPage />} />
+          <Route path="/interests" element={<InterestsPage />} />
+          <Route path="*" element={<HomePage />} />
+        </Routes>
+
+        <footer className="site-footer">
+          <span>© {new Date().getFullYear()} Benjamin Namayandeh</span>
+          <ColorOfTheDay />
+          <span>Built with love</span>
+        </footer>
+      </div>
     </div>
   )
 }

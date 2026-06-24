@@ -1,21 +1,26 @@
+import { FiArrowUpRight } from 'react-icons/fi'
+
 import RevealSection from '../../shared/components/RevealSection'
 import SectionHeading from '../../shared/components/SectionHeading'
+import { reposHref } from '../../content/portfolio'
 
 import ProjectCard from './components/ProjectCard'
 
-function ProjectsSection({ projects }) {
+function ProjectsSection({ number, projects }) {
   return (
-    <RevealSection className="content-block" id="projects">
-      <SectionHeading
-        title="Projects"
-        inline
-      />
+    <RevealSection as="section" className="section" id="projects">
+      <SectionHeading number={number} title="Projects" />
 
-      <div className="project-grid">
-        {projects.map((project, index) => (
-          <ProjectCard key={project.name} project={project} index={index} />
+      <div className="ledger">
+        {projects.map((project) => (
+          <ProjectCard key={project.name} project={project} />
         ))}
       </div>
+
+      <a className="ledger-more" href={reposHref} target="_blank" rel="noreferrer">
+        See the rest on GitHub
+        <FiArrowUpRight className="proj-arrow" aria-hidden="true" />
+      </a>
     </RevealSection>
   )
 }

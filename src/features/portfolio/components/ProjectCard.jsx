@@ -1,22 +1,26 @@
-function ProjectCard({ project, index }) {
+import { FiArrowUpRight } from 'react-icons/fi'
+
+function ProjectCard({ project }) {
   const isExternalLink = /^https?:\/\//.test(project.href)
+  const NameTag = project.href ? 'a' : 'span'
 
   return (
-    <a
-      className="project-card"
-      href={project.href}
-      target={isExternalLink ? '_blank' : undefined}
-      rel={isExternalLink ? 'noreferrer' : undefined}
-      style={{ transitionDelay: `${index * 90}ms` }}
-    >
-      <div className="project-card-body">
-        <h3>{project.name}</h3>
-        <p className="project-label">{project.label}</p>
+    <article className="ledger-item">
+      <div className="ledger-head">
+        <NameTag
+          className="proj-name"
+          href={project.href || undefined}
+          target={isExternalLink ? '_blank' : undefined}
+          rel={isExternalLink ? 'noreferrer' : undefined}
+        >
+          {project.name}
+          {project.href ? <FiArrowUpRight className="proj-arrow" aria-hidden="true" /> : null}
+        </NameTag>
+        <span className="ledger-meta">{project.label}</span>
       </div>
-      <div className="project-description-panel">
-        <p>{project.description}</p>
-      </div>
-    </a>
+
+      <p className="proj-desc">{project.description}</p>
+    </article>
   )
 }
 

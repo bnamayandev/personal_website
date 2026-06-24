@@ -1,31 +1,40 @@
+import { FiArrowUpRight } from 'react-icons/fi'
+
+const repositories = [
+  { label: 'Frontend', tag: 'React', href: 'https://github.com/WesternBajaRacing/BajaEcom-Frontend' },
+  { label: 'Backend', tag: 'Service layer', href: 'https://github.com/WesternBajaRacing/BajaEcom-Backend' },
+]
+
 function BajaEcomPage() {
   return (
-    <section className="baja-page content-block" aria-labelledby="bajaecom-title">
-      <p className="eyebrow">Western Baja Racing</p>
-      <h1 id="bajaecom-title">Baja Ecom</h1>
-      <p className="baja-page-copy">
-        Repository links for the Baja Ecom storefront and service layer.
+    <main className="baja" aria-labelledby="bajaecom-title">
+      <p className="baja-eyebrow">Western Baja Racing</p>
+      <h1 className="baja-name" id="bajaecom-title">Baja Ecom</h1>
+      <p className="baja-copy">
+        A full-stack storefront for merch sales with cleaner inventory handling and a
+        setup that was easier for the team to run. Repository links below.
       </p>
 
-      <div className="baja-page-actions" aria-label="Baja Ecom repositories">
-        <a
-          className="primary-link"
-          href="https://github.com/WesternBajaRacing/BajaEcom-Frontend"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Frontend
-        </a>
-        <a
-          className="primary-link"
-          href="https://github.com/WesternBajaRacing/BajaEcom-Backend"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Backend
-        </a>
+      <div className="baja-links">
+        {repositories.map((repo) => (
+          <a
+            key={repo.label}
+            className="baja-link"
+            href={repo.href}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>
+              {repo.label}
+              <FiArrowUpRight className="proj-arrow" aria-hidden="true" style={{ marginLeft: 8 }} />
+            </span>
+            <span className="baja-link-tag">{repo.tag}</span>
+          </a>
+        ))}
       </div>
-    </section>
+
+      <a className="baja-back" href="/">← back to home</a>
+    </main>
   )
 }
 

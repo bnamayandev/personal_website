@@ -1,10 +1,9 @@
-function SectionHeading({  title, note, inline = false }) {
+function SectionHeading({ number, title }) {
   return (
-    <div className={`section-heading${inline ? ' section-heading-inline' : ''}`}>
-      <div>
-        <h2>{title}</h2>
-      </div>
-      {note ? <span className="section-note">{note}</span> : null}
+    <div className="section-head">
+      {number ? <span className="section-num">{number}</span> : null}
+      <h2 className="section-title">{title}</h2>
+      <span className="section-rule" aria-hidden="true" />
     </div>
   )
 }

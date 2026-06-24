@@ -1,36 +1,18 @@
-import RevealSection from '../../shared/components/RevealSection'
+import RevealSection from "../../shared/components/RevealSection";
 
-function HeroSection({ socialLinks }) {
-  const resumeHref = '/resume.pdf'
-
+function HeroSection() {
   return (
-    <RevealSection className="hero" immediate>
-      <div className="hero-copy">
-        <h1><strong>Hi👋,  I'm Ben!</strong></h1>
-        <p className="hero-text">
-            Hi, I'm Benjamin, a software engineering student at Western University. I’m passionate about building innovative projects, especially in web development and AI. Always open to connecting, so feel free to reach out!
-        </p>
-
-        <div className="hero-actions">
-          <a className="primary-link" href="#projects">
-            View projects
-          </a>
-          <a className="secondary-link" href="#experience">
-            See experience
-          </a>
-          {socialLinks.map((link) => (
-            <a key={link.label} className="secondary-link" href={link.href} target="_blank" rel="noreferrer">
-              {link.label}
-            </a>
-          ))}
-          <a className="secondary-link" href={resumeHref} target="_blank" rel="noreferrer">
-            See resume
-          </a>
-        </div>
-      </div>
-
+    <RevealSection as="header" className="hero" immediate>
+      <p className="hero-eyebrow">Software Engineer · Student</p>
+      <h1 className="hero-name">Benjamin Namayandeh</h1>
+      <p className="hero-intro">
+        Software engineering student at Western University. I like building
+        thoughtful software across backend services, embedded systems, and
+        applied AI. Always open to connecting. Feel free to{" "}
+        <a href="#contact">reach out</a>.
+      </p>
     </RevealSection>
-  )
+  );
 }
 
-export default HeroSection
+export default HeroSection;
