@@ -54,13 +54,27 @@ a {
 /* ----------------------------------------------------------------- Layout */
 
 .page {
+  position: relative;
   min-height: 100vh;
   padding: 0 28px;
 }
 
 .container {
+  position: relative;
+  z-index: 1;
   width: min(720px, 100%);
   margin: 0 auto;
+}
+
+/* --------------------------------------------------------- ASCII backdrop */
+
+.ascii-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 /* ------------------------------------------------------------------- Nav */
@@ -141,23 +155,16 @@ a {
   padding: 64px 0 56px;
 }
 
-.hero-eyebrow {
-  display: inline-block;
-  margin: 0;
-  padding: 0 3px;
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
-  color: var(--text);
-  background: linear-gradient(transparent 52%, color-mix(in srgb, var(--accent) 34%, transparent) 52%);
-}
-
 .hero-name {
   margin: 22px 0 28px;
   font-weight: 300;
   font-size: clamp(3rem, 9vw, 5.8rem);
   line-height: 0.98;
   letter-spacing: -0.035em;
+}
+
+.hero-name-highlight {
+  background: linear-gradient(transparent 58%, color-mix(in srgb, var(--accent) 34%, transparent) 58%);
 }
 
 .hero-intro {

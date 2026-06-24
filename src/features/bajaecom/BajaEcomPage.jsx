@@ -1,4 +1,7 @@
+import { Link } from 'react-router-dom'
 import { FiArrowUpRight } from 'react-icons/fi'
+
+import RevealSection from '../../shared/components/RevealSection'
 
 const repositories = [
   { label: 'Frontend', tag: 'React', href: 'https://github.com/WesternBajaRacing/BajaEcom-Frontend' },
@@ -7,7 +10,7 @@ const repositories = [
 
 function BajaEcomPage() {
   return (
-    <main className="baja" aria-labelledby="bajaecom-title">
+    <RevealSection as="main" className="baja" immediate>
       <p className="baja-eyebrow">Western Baja Racing</p>
       <h1 className="baja-name" id="bajaecom-title">Baja Ecom</h1>
       <p className="baja-copy">
@@ -33,8 +36,8 @@ function BajaEcomPage() {
         ))}
       </div>
 
-      <a className="baja-back" href="/">← back to home</a>
-    </main>
+      <Link className="baja-back" to="/">← back to home</Link>
+    </RevealSection>
   )
 }
 

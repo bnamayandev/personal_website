@@ -7,6 +7,7 @@ import ExperienceSection from './features/portfolio/ExperienceSection'
 import HeroSection from './features/portfolio/HeroSection'
 import StackSection from './features/portfolio/LanguagesSection'
 import ProjectsSection from './features/portfolio/ProjectsSection'
+import AsciiBackground from './features/background/AsciiBackground'
 import GlowCursor from './shared/components/GlowCursor'
 import ColorOfTheDay from './shared/components/ColorOfTheDay'
 import { experiences, projects, skillGroups, socialLinks } from './content/portfolio'
@@ -44,8 +45,8 @@ function HomePage() {
       <HeroSection resumeHref={resumeHref} />
       <ExperienceSection number="01" experiences={experiences} />
       <ProjectsSection number="02" projects={projects} />
-      <ContactSection number="03" socialLinks={socialLinks} />
-      <StackSection number="04" skillGroups={skillGroups} />
+      <StackSection number="03" skillGroups={skillGroups} />
+      <ContactSection number="04" socialLinks={socialLinks} />
     </main>
   )
 }
@@ -53,6 +54,7 @@ function HomePage() {
 function App() {
   return (
     <div className="page">
+      <AsciiBackground />
       <GlowCursor />
       <div className="container">
         <TopNav />
