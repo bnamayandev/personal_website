@@ -72,9 +72,9 @@ export const projects = [
   {
     name: "memcommands",
     href: "https://github.com/bnamayandev/memcommands",
-    label: "Brew & Linux package",
+    label: "Terminal Tool",
     description:
-      "A shell history search tool that brings vim motions to navigating and reusing past commands for fast, keyboard-driven recall.",
+      "A shell history search tool that brings vim motions to navigating and reusing past commands for fast, keyboard-driven recall. Written in Go!",
   },
   {
     name: "UrbanForge",
