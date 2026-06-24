@@ -74,7 +74,7 @@ export const projects = [
     href: "https://github.com/bnamayandev/memcommands",
     label: "Brew & Linux package",
     description:
-      "A shell history search tool, distributed via Homebrew and Linux package managers, that brings vim motions to navigating and reusing past commands for fast, keyboard-driven recall.",
+      "A shell history search tool that brings vim motions to navigating and reusing past commands for fast, keyboard-driven recall.",
   },
   {
     name: "UrbanForge",
