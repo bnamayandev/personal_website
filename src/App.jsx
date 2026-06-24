@@ -5,11 +5,10 @@ import InterestsPage from './features/interests/InterestsPage'
 import ContactSection from './features/portfolio/ContactSection'
 import ExperienceSection from './features/portfolio/ExperienceSection'
 import HeroSection from './features/portfolio/HeroSection'
-import StackSection from './features/portfolio/LanguagesSection'
 import ProjectsSection from './features/portfolio/ProjectsSection'
 import AsciiBackground from './features/background/AsciiBackground'
 import ColorOfTheDay from './shared/components/ColorOfTheDay'
-import { experiences, projects, skillGroups, socialLinks } from './content/portfolio'
+import { experiences, projects, socialLinks } from './content/portfolio'
 
 const resumeHref = '/resume.pdf'
 
@@ -44,8 +43,7 @@ function HomePage() {
       <HeroSection resumeHref={resumeHref} />
       <ExperienceSection number="01" experiences={experiences} />
       <ProjectsSection number="02" projects={projects} />
-      <StackSection number="03" skillGroups={skillGroups} />
-      <ContactSection number="04" socialLinks={socialLinks} />
+      <ContactSection number="03" socialLinks={socialLinks} />
     </main>
   )
 }

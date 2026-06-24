@@ -334,52 +334,6 @@ a.proj-name:hover .proj-arrow {
   transform: translate(2px, -2px);
 }
 
-/* Stack */
-
-.stack-row {
-  display: flex;
-  gap: 24px;
-  padding: 20px 0;
-  border-top: 1px solid var(--line-soft);
-}
-
-.stack-row:first-child {
-  padding-top: 0;
-  border-top: 0;
-}
-
-.stack-label {
-  flex: 0 0 132px;
-  font-family: var(--mono);
-  font-size: 0.76rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding-top: 2px;
-}
-
-.stack-items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 20px;
-}
-
-.stack-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--mono);
-  font-size: 0.86rem;
-  color: var(--text-soft);
-}
-
-.stack-icon {
-  width: 15px;
-  height: 15px;
-  flex: 0 0 auto;
-  color: var(--accent);
-}
-
 /* Contact */
 
 .contact-row {
@@ -724,15 +678,6 @@ button:focus-visible {
   .ledger-head {
     flex-direction: column;
     gap: 8px;
-  }
-
-  .stack-row {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .stack-label {
-    flex-basis: auto;
   }
 
   .contact-row {
