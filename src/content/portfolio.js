@@ -7,6 +7,7 @@ export const skillGroups = [
       { label: "TypeScript", icon: "typescript" },
       { label: "C", icon: "c" },
       { label: "C++", icon: "cpp" },
+      { label: "Ruby", icon: "ruby" },
       { label: "Go", icon: "go" },
       { label: "Rust", icon: "rust" },
       { label: "C#", icon: "csharp" },
