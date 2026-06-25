@@ -24,7 +24,9 @@ function InterestsPage() {
   return (
     <RevealSection as="main" className="interests" id="interests" immediate>
       <p className="baja-eyebrow">Beyond the keyboard</p>
-      <h1 className="baja-name">My Interests</h1>
+      <h1 className="baja-name">
+        <span className="baja-name-highlight">My Interests</span>
+      </h1>
       <p className="about-lead">{lead}</p>
 
       <div className="about-interests">

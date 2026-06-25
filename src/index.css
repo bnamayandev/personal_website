@@ -159,12 +159,16 @@ a {
   margin: 22px 0 28px;
   font-weight: 300;
   font-size: clamp(3rem, 9vw, 5.8rem);
-  line-height: 0.98;
+  line-height: 1.18;
   letter-spacing: -0.035em;
 }
 
-.hero-name-highlight {
-  background: linear-gradient(transparent 58%, color-mix(in srgb, var(--accent) 34%, transparent) 58%);
+.hero-name-highlight,
+.baja-name-highlight {
+  background: color-mix(in srgb, var(--accent) 32%, var(--bg));
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0 0.08em;
 }
 
 .hero-intro {
@@ -216,6 +220,8 @@ a {
   text-transform: uppercase;
   color: var(--text);
   white-space: nowrap;
+  padding: 4px 9px;
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
 }
 
 .section-rule {
@@ -404,7 +410,7 @@ a.contact-value:hover {
   margin: 20px 0 24px;
   font-weight: 300;
   font-size: clamp(2.6rem, 8vw, 4.6rem);
-  line-height: 1;
+  line-height: 1.18;
   letter-spacing: -0.035em;
 }
 

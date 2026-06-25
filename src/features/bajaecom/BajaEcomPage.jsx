@@ -12,7 +12,9 @@ function BajaEcomPage() {
   return (
     <RevealSection as="main" className="baja" immediate>
       <p className="baja-eyebrow">Western Baja Racing</p>
-      <h1 className="baja-name" id="bajaecom-title">Baja Ecom</h1>
+      <h1 className="baja-name" id="bajaecom-title">
+        <span className="baja-name-highlight">Baja Ecom</span>
+      </h1>
       <p className="baja-copy">
         A full-stack storefront for merch sales with cleaner inventory handling and a
         setup that was easier for the team to run. Repository links below.
