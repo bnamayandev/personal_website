@@ -1,6 +1,7 @@
 import { Link, Route, Routes } from 'react-router-dom'
 
 import BajaEcomPage from './features/bajaecom/BajaEcomPage'
+import EasterEggPage from './features/bikegame/EasterEggPage'
 import InterestsPage from './features/interests/InterestsPage'
 import ContactSection from './features/portfolio/ContactSection'
 import ExperienceSection from './features/portfolio/ExperienceSection'
@@ -59,13 +60,16 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/bajaecom" element={<BajaEcomPage />} />
           <Route path="/interests" element={<InterestsPage />} />
+          <Route path="/easter-egg" element={<EasterEggPage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
 
         <footer className="site-footer">
           <span>© {new Date().getFullYear()} Benjamin Namayandeh</span>
           <ColorOfTheDay />
-          <span>Built with love</span>
+          <Link className="footer-egg" to="/easter-egg">
+            <span className="footer-egg-hint">(super secret)</span> easter egg
+          </Link>
         </footer>
       </div>
     </div>

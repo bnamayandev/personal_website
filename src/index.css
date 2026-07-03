@@ -605,6 +605,123 @@ a.contact-value:hover {
   color: var(--muted-soft);
 }
 
+/* --------------------------------------------------------- Easter egg game */
+
+.egg {
+  padding: 72px 0 24px;
+}
+
+.footer-egg {
+  color: var(--muted);
+  transition: color 160ms ease;
+}
+
+.footer-egg:hover {
+  color: var(--accent);
+}
+
+.footer-egg-hint {
+  color: var(--muted-soft);
+}
+
+.footer-egg:hover .footer-egg-hint {
+  color: color-mix(in srgb, var(--accent) 70%, transparent);
+}
+
+.term {
+  --term-bg: #211f1d;
+  margin: 8px 0 40px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--term-bg);
+  box-shadow: 0 24px 60px -34px rgba(0, 0, 0, 0.85);
+}
+
+.term-screen {
+  position: relative;
+  height: 460px;
+  max-height: 68vh;
+  overflow: auto;
+  padding: 16px 18px;
+  outline: none;
+  cursor: text;
+}
+
+.term-screen:focus-visible {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 42%, transparent);
+}
+
+.term-pre {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: clamp(0.66rem, 2vw, 0.82rem);
+  line-height: 1.5;
+  color: #ded7c7;
+  white-space: pre-wrap;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.term-caret {
+  color: #ded7c7;
+  animation: term-blink 1.05s steps(1) infinite;
+}
+
+@keyframes term-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.term-boot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.term-btn {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.term-btn:hover {
+  background: color-mix(in srgb, var(--accent) 26%, transparent);
+  border-color: var(--accent);
+  color: var(--accent-hover);
+}
+
+.term-again {
+  margin-top: 16px;
+}
+
+.term-boot-note {
+  margin: 16px 0 0;
+  max-width: 46ch;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.term-status {
+  position: absolute;
+  left: 18px;
+  bottom: 14px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
 /* ------------------------------------------------------------ Reveal / a11y */
 
 .reveal {

@@ -23,7 +23,6 @@ function InterestsPage() {
 
   return (
     <RevealSection as="main" className="interests" id="interests" immediate>
-      <p className="baja-eyebrow">Beyond the keyboard</p>
       <h1 className="baja-name">
         <span className="baja-name-highlight">My Interests</span>
       </h1>
