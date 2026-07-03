@@ -3,9 +3,10 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
-import { applyDailyAccent } from './shared/dailyAccent.js'
+import { applyDailyAccent, applyDailyFavicon } from './shared/dailyAccent.js'
 
 applyDailyAccent()
+applyDailyFavicon()
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
