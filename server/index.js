@@ -27,6 +27,12 @@ async function cached(key, loader) {
   return value
 }
 
+// Allow the Vite dev server (different origin) to call the API directly.
+app.use('/api', (_req, res, next) => {
+  res.set('Access-Control-Allow-Origin', '*')
+  next()
+})
+
 app.get('/api/spotify', async (_req, res) => {
   try {
     const data = await cached('spotify', getSpotifyStats)

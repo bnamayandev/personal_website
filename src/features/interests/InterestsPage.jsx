@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FiArrowUpRight } from 'react-icons/fi'
 
 import RevealSection from '../../shared/components/RevealSection'
 import { aboutMe } from '../../content/aboutMe'
+import { API_BASE } from '../../shared/apiBase'
 
 function ProfileLink({ href }) {
   return (
@@ -16,10 +18,44 @@ function ProfileLink({ href }) {
 function InterestsPage() {
   const { lead, interests, spotify, steam, fineprint } = aboutMe
 
-  // Rendered straight from the hand-kept snapshot in content/aboutMe.
-  const spotifyView = spotify
-  const steamView = steam
+  // Start from the hand-kept snapshot, then overlay live API data when the
+  // backend is running. If the calls fail we just keep the snapshot.
+  const [spotifyView, setSpotifyView] = useState(spotify)
+  const [steamView, setSteamView] = useState(steam)
   const fineprintText = fineprint
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function load(path, apply) {
+      try {
+        const res = await fetch(`${API_BASE}${path}`)
+        if (!res.ok) return
+        const data = await res.json()
+        if (!cancelled) apply(data)
+      } catch {
+        // Backend not running — keep the static snapshot.
+      }
+    }
+
+    load('/api/spotify', (data) =>
+      setSpotifyView((prev) => ({
+        ...prev,
+        topArtists: data.topArtists?.length ? data.topArtists : prev.topArtists,
+        topTracks: data.topTracks?.length ? data.topTracks : prev.topTracks,
+      })),
+    )
+    load('/api/steam', (data) =>
+      setSteamView((prev) => ({
+        ...prev,
+        recentGames: data.recentGames?.length ? data.recentGames : prev.recentGames,
+      })),
+    )
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   return (
     <RevealSection as="main" className="interests" id="interests" immediate>

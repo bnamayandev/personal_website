@@ -65,11 +65,10 @@ function App() {
         </Routes>
 
         <footer className="site-footer">
-          <span>© {new Date().getFullYear()} Benjamin Namayandeh</span>
-          <ColorOfTheDay />
           <Link className="footer-egg" to="/easter-egg">
             <span className="footer-egg-hint">(super secret)</span> easter egg
           </Link>
+          <ColorOfTheDay />
         </footer>
       </div>
     </div>
