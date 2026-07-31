@@ -64,6 +64,12 @@ export const projects = [
     description:
       "A pantry and recipe app built to help people use ingredients before they expired and figure out what to cook with what they already had.",
   },
+  {
+    name: "Constant.",
+    label: "Hackathon winner",
+    description:
+      "A remittance wallet that protects transfers from inflation by timing currency conversion instead of converting it all on arrival, splitting funds into tranches based on corridor volatility and a recipient's upcoming spend. Won at HackThe6ix 2026.",
+  },
 ];
 
 export const reposHref = "https://github.com/bnamayandev?tab=repositories";
