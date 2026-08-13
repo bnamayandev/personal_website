@@ -11,8 +11,6 @@ import AsciiBackground from './features/background/AsciiBackground'
 import ColorOfTheDay from './shared/components/ColorOfTheDay'
 import { experiences, projects, socialLinks } from './content/portfolio'
 
-const resumeHref = '/resume.pdf'
-
 function TopNav() {
   return (
     <nav className="topnav" aria-label="Primary">
@@ -30,9 +28,6 @@ function TopNav() {
             {link.label.toLowerCase()}
           </a>
         ))}
-        <a className="topnav-link" href={resumeHref} target="_blank" rel="noreferrer">
-          résumé
-        </a>
       </div>
     </nav>
   )
@@ -41,7 +36,7 @@ function TopNav() {
 function HomePage() {
   return (
     <main>
-      <HeroSection resumeHref={resumeHref} />
+      <HeroSection />
       <ExperienceSection number="01" experiences={experiences} />
       <ProjectsSection number="02" projects={projects} />
       <ContactSection number="03" socialLinks={socialLinks} />
