@@ -66,6 +66,7 @@ export const projects = [
   },
   {
     name: "Constant.",
+    href: "https://devpost.com/software/costant",
     label: "Hackathon winner",
     description:
       "A remittance wallet that protects transfers from inflation by timing currency conversion instead of converting it all on arrival, splitting funds into tranches based on corridor volatility and a recipient's upcoming spend. Won at HackThe6ix 2026.",
