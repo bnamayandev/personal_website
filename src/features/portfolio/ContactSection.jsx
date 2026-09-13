@@ -3,7 +3,6 @@ import SectionHeading from '../../shared/components/SectionHeading'
 
 const directContacts = [
   { label: 'Email', value: 'benjaminnamayandeh@gmail.com', href: 'mailto:benjaminnamayandeh@gmail.com' },
-  { label: 'Mobile', value: '(647) 607-0275', href: 'tel:16476070275' },
 ]
 
 function ContactSection({ number, socialLinks = [] }) {
