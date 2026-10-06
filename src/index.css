@@ -273,12 +273,49 @@ a {
   color: var(--muted);
 }
 
-.exp-summary {
-  margin: 14px 0 0;
-  max-width: 62ch;
-  font-size: 0.97rem;
-  line-height: 1.7;
-  color: var(--text-soft);
+.timeline {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 28px;
+  list-style: none;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--line);
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 32px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -28px;
+  top: 5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--muted);
+}
+
+.timeline-item:first-child .timeline-dot {
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 /* Projects */

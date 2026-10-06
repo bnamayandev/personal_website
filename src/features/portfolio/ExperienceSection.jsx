@@ -27,24 +27,19 @@ function ExperienceSection({ number, experiences }) {
     <RevealSection as="section" className="section" id="experience">
       <SectionHeading number={number} title="Experience" />
 
-      <div className="ledger">
+      <ol className="timeline">
         {experiences.map((experience) => (
-          <article key={`${experience.company}-${experience.role}`} className="ledger-item">
-            <div className="ledger-head">
-              <span className="exp-role">{experience.role}</span>
-              <span className="ledger-meta">{formatPeriod(experience.start, experience.end)}</span>
-            </div>
-
+          <li key={`${experience.company}-${experience.role}`} className="timeline-item">
+            <span className="timeline-dot" aria-hidden="true" />
+            <span className="ledger-meta">{formatPeriod(experience.start, experience.end)}</span>
+            <span className="exp-role">{experience.role}</span>
             <p className="exp-sub">
               {experience.company}
-              {experience.type ? ` · ${experience.type}` : ''}
               {experience.location ? ` · ${experience.location}` : ''}
             </p>
-
-            <p className="exp-summary">{experience.summary}</p>
-          </article>
+          </li>
         ))}
-      </div>
+      </ol>
     </RevealSection>
   )
 }

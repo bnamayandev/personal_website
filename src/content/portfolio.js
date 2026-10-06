@@ -1,12 +1,17 @@
 export const experiences = [
   {
-    role: "Software Developer Intern",
+    role: "Software Engineer",
+    company: "Ontario Teachers' Pension Plan",
+    location: "Toronto, Ontario",
+    start: "2026-09",
+    end: "present",
+  },
+  {
+    role: "Software Engineer",
     company: "Royal Bank of Canada",
     location: "Toronto, Ontario",
     start: "2026-01",
-    end: "present",
-    summary:
-      "Built features for RBC's business banking portal using Angular and Spring Boot, shipping to 95,000+ corporate clients while helping maintain 85% test coverage.",
+    end: "2026-04",
   },
   {
     role: "Research Assistant",
@@ -14,8 +19,6 @@ export const experiences = [
     location: "London, Ontario",
     start: "2025-05",
     end: "2025-09",
-    summary:
-      "Worked under Professor Mohamed Zaki on fault detection for autonomous vehicles in underground tunnels using LiDAR, SLAM, and machine learning. Built and tested a Python pipeline on a Clearpath Robotics Husky A300 using LiDAR and depth-camera data to validate real-world detection performance.",
   },
   {
     role: "Software Engineer Intern",
@@ -23,8 +26,6 @@ export const experiences = [
     location: "Toronto, Ontario",
     start: "2025-05",
     end: "2025-08",
-    summary:
-      "Worked at a Canadian startup focused on food allergen detection, collaborating in a small team on an AI pipeline designed for high-accuracy results.",
   },
 ];
 
