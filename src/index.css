@@ -635,6 +635,66 @@ a.contact-value:hover {
   white-space: nowrap;
 }
 
+.about-link,
+.about-now .about-line-main {
+  transition: color 160ms ease;
+}
+
+.about-link:hover,
+.about-now:hover .about-line-main {
+  color: var(--accent);
+}
+
+.about-now-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.about-now-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 55%, transparent);
+  animation: about-now-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes about-now-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.about-now {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 0 2px;
+  font-family: var(--mono);
+}
+
+.about-now-art {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 2px;
+  border: 1px solid var(--line-soft);
+  object-fit: cover;
+}
+
+.about-now-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.about-now .about-line-sub {
+  text-align: left;
+  white-space: normal;
+}
+
 .about-fineprint {
   margin: 36px 0 0;
   font-family: var(--mono);

@@ -3,7 +3,7 @@ import express from 'express'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { getSpotifyStats } from './spotify.js'
+import { getNowPlaying, getSpotifyStats } from './spotify.js'
 import { getSteamStats } from './steam.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -14,11 +14,13 @@ const app = express()
 
 // Small in-memory cache so we are not hammering Spotify/Steam on every page view.
 const CACHE_TTL_MS = Number(process.env.STATS_CACHE_MINUTES || 10) * 60 * 1000
+// Now playing goes stale fast, so it gets a much shorter cache.
+const NOW_PLAYING_TTL_MS = 20 * 1000
 const cache = new Map()
 
-async function cached(key, loader) {
+async function cached(key, loader, ttl = CACHE_TTL_MS) {
   const hit = cache.get(key)
-  if (hit && Date.now() - hit.at < CACHE_TTL_MS) {
+  if (hit && Date.now() - hit.at < ttl) {
     return hit.value
   }
 
@@ -34,9 +36,15 @@ app.use('/api', (_req, res, next) => {
 })
 
 app.get('/api/spotify', async (_req, res) => {
+  // A now-playing hiccup should not take the weekly stats down with it.
+  const nowPlaying = cached('spotify:now', getNowPlaying, NOW_PLAYING_TTL_MS).catch((error) => {
+    console.error('[spotify:now]', error.message)
+    return null
+  })
+
   try {
-    const data = await cached('spotify', getSpotifyStats)
-    res.json(data)
+    const stats = await cached('spotify', getSpotifyStats)
+    res.json({ nowPlaying: await nowPlaying, ...stats })
   } catch (error) {
     console.error('[spotify]', error.message)
     res.status(502).json({ error: 'spotify_unavailable' })

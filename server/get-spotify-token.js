@@ -8,7 +8,7 @@
 //   5. Open the printed URL, approve, and copy the refresh token it prints
 //      into .env as SPOTIFY_REFRESH_TOKEN
 //
-// You only need to do this once.
+// You only need to do this once (or again if the scopes below ever change).
 
 import 'dotenv/config'
 import express from 'express'
@@ -16,7 +16,9 @@ import express from 'express'
 const clientId = process.env.SPOTIFY_CLIENT_ID
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET
 const redirectUri = process.env.SPOTIFY_REDIRECT_URI || 'http://127.0.0.1:8888/callback'
-const scope = 'user-top-read'
+// Top items for the 4-week stats, currently-playing for the live track, and
+// recently-played for the last track when nothing is playing.
+const scope = 'user-top-read user-read-recently-played user-read-currently-playing'
 const port = Number(new URL(redirectUri).port) || 8888
 
 if (!clientId || !clientSecret) {
