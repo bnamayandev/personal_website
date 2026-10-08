@@ -1,6 +1,6 @@
-// Copy and stats for the About section. The Spotify and Steam values are hand
-// kept snapshots; the Interests page swaps in live data from the server's /api
-// when it is running.
+// Copy and stats for the About section. Spotify data comes only from the
+// server's /api/spotify; the Steam values are a hand-kept snapshot that the
+// Interests page swaps for live data when the server is running.
 
 export const aboutMe = {
   lead: "Here's what I get up to away from the keyboard, plus what I have been listening to and playing lately.",
@@ -37,30 +37,14 @@ export const aboutMe = {
     captions: {
       nowPlaying: "Listening Now",
       lastPlayed: "Last Played",
-      tracks: "Top Tracks, Last 4 Weeks",
-      albums: "Top Albums, Last 4 Weeks",
-      artists: "Top Artists, Last 4 Weeks",
+      tracks: "Top Tracks",
+      albums: "Top Albums",
+      artists: "Top Artists",
+      unavailable: "Couldn't load music right now.",
     },
-    // Hand-kept snapshot, shown until /api/spotify answers.
-    nowPlaying: null,
-    topArtists: [
-      { name: "The Strokes" },
-      { name: "Geese" },
-      { name: "Radiohead" },
-      { name: "Deftones" },
-    ],
-    topAlbums: [],
-    topTracks: [
-      { title: "Genesis", artist: "Justice" },
-      { title: "Nausicaä (Love Will Be Revealed)", artist: "Cameron Winter" },
-      { title: "Domoto", artist: "Geese" },
-      { title: "Au Pays du Cocaine", artist: "Geese" },
-      { title: "12:51", artist: "The Strokes" },
-    ],
   },
 
   steam: {
-    href: "https://steamcommunity.com/",
     caption: "Recently played",
     recentGames: [
       { name: "PUBG", detail: "with friends" },
@@ -69,6 +53,4 @@ export const aboutMe = {
       { name: "Phasmophobia", detail: "late nights" },
     ],
   },
-
-  fineprint: "These are updated by hand for now.",
 }

@@ -5,8 +5,9 @@
 
 const TOKEN_URL = 'https://accounts.spotify.com/api/token'
 const API_BASE = 'https://api.spotify.com/v1'
-const TIME_RANGE = 'short_term' // ~last 4 weeks
+const TIME_RANGE = 'short_term' 
 const LIMIT = Number(process.env.SPOTIFY_LIMIT || 4)
+const TIMEOUT_MS = 10 * 1000
 
 function requireEnv() {
   const clientId = process.env.SPOTIFY_CLIENT_ID
@@ -50,6 +51,7 @@ async function refreshAccessToken() {
       grant_type: 'refresh_token',
       refresh_token: refreshToken,
     }),
+    signal: AbortSignal.timeout(TIMEOUT_MS),
   })
 
   if (!response.ok) {
@@ -68,6 +70,7 @@ async function spotifyGet(endpoint) {
   const accessToken = await getAccessToken()
   const response = await fetch(`${API_BASE}${endpoint}`, {
     headers: { Authorization: `Bearer ${accessToken}` },
+    signal: AbortSignal.timeout(TIMEOUT_MS),
   })
 
   if (!response.ok) {
@@ -80,7 +83,8 @@ async function spotifyGet(endpoint) {
 
 const joinNames = (artists = []) => artists.map((a) => a.name).join(', ')
 
-// Covers come widest-first (640, 300, 64); 300px stays sharp as a thumbnail.
+// Spotify lists images widest-first (~640, ~300, ~64); the middle one stays
+// sharp as a thumbnail. Used for album covers and artist photos.
 const coverUrl = (images = []) => (images[1] ?? images[0])?.url
 
 function shapeTrack(track) {
@@ -145,6 +149,7 @@ export async function getSpotifyStats() {
     topArtists: (artists?.items || []).map((artist) => ({
       name: artist.name,
       url: artist.external_urls?.spotify,
+      image: coverUrl(artist.images),
     })),
     updatedAt: new Date().toISOString(),
   }

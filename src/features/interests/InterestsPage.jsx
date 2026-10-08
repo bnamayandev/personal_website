@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FiArrowUpRight } from 'react-icons/fi'
 
@@ -15,7 +15,7 @@ function ProfileLink({ href }) {
   )
 }
 
-// Links out to Spotify when the API gave us a URL; the hand-kept snapshot has none.
+// Links out to Spotify when the API gave us a URL.
 function MaybeLink({ href, className = '', children }) {
   if (!href) return <span className={className}>{children}</span>
   return (
@@ -43,50 +43,85 @@ function NowPlaying({ track, captions }) {
   )
 }
 
+function TopList({ caption, items }) {
+  if (!items?.length) return null
+  return (
+    <>
+      <p className="about-panel-note">{caption}</p>
+      <div className="about-list">
+        {items.map((item) => (
+          <div className="about-line" key={`${item.title}-${item.artist}`}>
+            <MaybeLink className="about-line-main" href={item.url}>{item.title}</MaybeLink>
+            <span className="about-line-sub">{item.artist}</span>
+          </div>
+        ))}
+      </div>
+    </>
+  )
+}
+
+function ArtistList({ caption, artists }) {
+  if (!artists?.length) return null
+  return (
+    <>
+      <p className="about-panel-note">{caption}</p>
+      <div className="about-list">
+        {artists.map((artist) => (
+          <div className="about-line about-artist" key={artist.name}>
+            {artist.image && <img className="about-artist-art" src={artist.image} alt="" width="28" height="28" />}
+            <MaybeLink className="about-line-main" href={artist.url}>{artist.name}</MaybeLink>
+          </div>
+        ))}
+      </div>
+    </>
+  )
+}
+
+function SpotifyStats({ data, captions }) {
+  return (
+    <>
+      {data.nowPlaying && <NowPlaying track={data.nowPlaying} captions={captions} />}
+      <TopList caption={captions.tracks} items={data.topTracks} />
+      <TopList caption={captions.albums} items={data.topAlbums} />
+      <ArtistList caption={captions.artists} artists={data.topArtists} />
+    </>
+  )
+}
+
 function InterestsPage() {
-  const { lead, interests, spotify, steam, fineprint } = aboutMe
+  const { lead, interests, spotify, steam } = aboutMe
 
-  // Start from the hand-kept snapshot, then swap in live API data when the
-  // backend is running. If the calls fail we just keep what we have.
-  const [spotifyView, setSpotifyView] = useState(spotify)
+  // Spotify has no snapshot: it renders once /api/spotify answers, or shows a
+  // short note if it can't. Steam starts from the hand-kept snapshot and swaps
+  // in live data when the backend is running.
+  const [spotifyData, setSpotifyData] = useState(null)
+  const [spotifyFailed, setSpotifyFailed] = useState(false)
   const [steamView, setSteamView] = useState(steam)
-  const [live, setLive] = useState({ spotify: false, steam: false })
-
-  const liveSources = [live.spotify && 'Spotify', live.steam && 'Steam'].filter(Boolean)
-  const fineprintText = liveSources.length ? `Pulled live from ${liveSources.join(' and ')}.` : fineprint
-  const { captions } = spotify
 
   useEffect(() => {
     let cancelled = false
 
+    // Resolves true once the data has been applied, false if the call failed.
     async function load(path, apply) {
       try {
         const res = await fetch(`${API_BASE}${path}`)
-        if (!res.ok) return
+        if (!res.ok) return false
         const data = await res.json()
         if (!cancelled) apply(data)
+        return true
       } catch {
-        // Backend not running — keep the static snapshot.
+        return false
       }
     }
 
-    load('/api/spotify', (data) => {
-      setSpotifyView((prev) => ({
-        ...prev,
-        href: data.profileUrl || prev.href,
-        nowPlaying: data.nowPlaying,
-        topTracks: data.topTracks,
-        topAlbums: data.topAlbums,
-        topArtists: data.topArtists,
-      }))
-      setLive((prev) => ({ ...prev, spotify: true }))
+    load('/api/spotify', setSpotifyData).then((ok) => {
+      if (!ok && !cancelled) setSpotifyFailed(true)
     })
     load('/api/steam', (data) => {
       setSteamView((prev) => ({
         ...prev,
         recentGames: data.recentGames?.length ? data.recentGames : prev.recentGames,
       }))
-      setLive((prev) => ({ ...prev, steam: true }))
     })
 
     return () => {
@@ -113,53 +148,17 @@ function InterestsPage() {
       <div className="about-data">
         <section className="about-panel">
           <div className="about-panel-head">
-            <span className="about-panel-label">Spotify</span>
-            <ProfileLink href={spotifyView.href} />
+            <span className="about-panel-label">Music</span>
+            <ProfileLink href={spotifyData?.profileUrl || spotify.href} />
           </div>
 
-          {spotifyView.nowPlaying && (
-            <NowPlaying track={spotifyView.nowPlaying} captions={captions} />
-          )}
-
-          <p className="about-panel-note">{captions.tracks}</p>
-          <div className="about-list">
-            {spotifyView.topTracks.map((track) => (
-              <div className="about-line" key={`${track.title}-${track.artist}`}>
-                <MaybeLink className="about-line-main" href={track.url}>{track.title}</MaybeLink>
-                <span className="about-line-sub">{track.artist}</span>
-              </div>
-            ))}
-          </div>
-
-          {spotifyView.topAlbums.length > 0 && (
-            <>
-              <p className="about-panel-note">{captions.albums}</p>
-              <div className="about-list">
-                {spotifyView.topAlbums.map((album) => (
-                  <div className="about-line" key={`${album.title}-${album.artist}`}>
-                    <MaybeLink className="about-line-main" href={album.url}>{album.title}</MaybeLink>
-                    <span className="about-line-sub">{album.artist}</span>
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-
-          <p className="about-panel-note">{captions.artists}</p>
-          <p className="about-panel-artists">
-            {spotifyView.topArtists.map((artist, index) => (
-              <Fragment key={artist.name}>
-                {index > 0 && ', '}
-                <MaybeLink href={artist.url}>{artist.name}</MaybeLink>
-              </Fragment>
-            ))}
-          </p>
+          {spotifyData && <SpotifyStats data={spotifyData} captions={spotify.captions} />}
+          {spotifyFailed && <p className="about-panel-note">{spotify.captions.unavailable}</p>}
         </section>
 
         <section className="about-panel">
           <div className="about-panel-head">
             <span className="about-panel-label">Steam</span>
-            <ProfileLink href={steamView.href} />
           </div>
 
           <p className="about-panel-note">{steamView.caption}</p>
@@ -173,8 +172,6 @@ function InterestsPage() {
           </div>
         </section>
       </div>
-
-      <p className="about-fineprint">{fineprintText}</p>
 
       <Link className="baja-back" to="/">← back to home</Link>
     </RevealSection>

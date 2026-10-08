@@ -33,7 +33,7 @@ export async function getSteamStats() {
   const { key, steamId } = requireEnv()
   const url = `${API_URL}?key=${key}&steamid=${steamId}&count=${LIMIT}&format=json`
 
-  const response = await fetch(url)
+  const response = await fetch(url, { signal: AbortSignal.timeout(10 * 1000) })
   if (!response.ok) {
     throw new Error(`recently played failed (${response.status})`)
   }
