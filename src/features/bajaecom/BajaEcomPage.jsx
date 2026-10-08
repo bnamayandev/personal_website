@@ -4,8 +4,8 @@ import { FiArrowUpRight } from 'react-icons/fi'
 import RevealSection from '../../shared/components/RevealSection'
 
 const repositories = [
-  { label: 'Frontend', tag: 'React', href: 'https://github.com/WesternBajaRacing/BajaEcom-Frontend' },
-  { label: 'Backend', tag: 'Service layer', href: 'https://github.com/WesternBajaRacing/BajaEcom-Backend' },
+  { label: 'Frontend', tag: 'React', href: 'https://github.com/bnamayandev/BajaEcom-Frontend' },
+  { label: 'Backend', tag: 'Service layer', href: 'https://github.com/bnamayandev/BajaEcom-Backend' },
 ]
 
 function BajaEcomPage() {
