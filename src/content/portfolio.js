@@ -40,7 +40,7 @@ export const projects = [
   {
     name: "UrbanForge",
     href: "https://github.com/bnamayandev/UrbanReality",
-    label: "Hackathon",
+    label: "Hackathon Winner",
     description:
       "A hackathon project that generates AI building models and analyzes their impact on the city of Toronto using open-source data.",
   },
