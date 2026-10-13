@@ -1,13 +1,13 @@
 export const experiences = [
   {
-    role: "Software Engineer",
+    role: "Software Engineer Intern",
     company: "Ontario Teachers' Pension Plan",
     location: "Toronto, Ontario",
     start: "2026-09",
     end: "present",
   },
   {
-    role: "Software Engineer",
+    role: "Software Engineer Intern",
     company: "Royal Bank of Canada",
     location: "Toronto, Ontario",
     start: "2026-01",
