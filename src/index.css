@@ -515,33 +515,29 @@ a.contact-value:hover {
   color: var(--text-soft);
 }
 
+/* Two columns that line up with the Music / Steam panels below. */
 .about-interests {
-  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 36px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
 }
 
 .about-interest {
-  display: flex;
-  gap: 24px;
-  padding: 22px 0;
-  border-top: 1px solid var(--line-soft);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  transition: color 160ms ease;
 }
 
-.about-interest-title {
-  flex: 0 0 132px;
-  padding-top: 3px;
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.about-interest:hover {
   color: var(--accent);
-}
-
-.about-interest-body {
-  margin: 0;
-  max-width: 58ch;
-  font-size: 0.97rem;
-  line-height: 1.7;
-  color: var(--text-soft);
 }
 
 .about-data {
@@ -913,14 +909,8 @@ button:focus-visible {
     padding: 44px 0 24px;
   }
 
-  .about-interest {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .about-interest-title {
-    flex-basis: auto;
-    padding-top: 0;
+  .about-interests {
+    grid-template-columns: 1fr;
   }
 
   .about-data {
