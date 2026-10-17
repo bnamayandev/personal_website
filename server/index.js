@@ -17,7 +17,7 @@ const isProduction = process.env.NODE_ENV === 'production'
 const app = express()
 app.disable('x-powered-by')
 
-// The page only loads its own files plus Google Fonts, Spotify album art, and
+// The page only loads its own files plus Google Fonts, Spotify and Steam art, and
 // Pyodide (the easter egg's Python runtime) from jsDelivr, which also needs to
 // compile WebAssembly. Inline styles stay allowed for React style props.
 const CONTENT_SECURITY_POLICY = [
@@ -25,7 +25,7 @@ const CONTENT_SECURITY_POLICY = [
   "script-src 'self' https://cdn.jsdelivr.net 'wasm-unsafe-eval'",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   'font-src https://fonts.gstatic.com',
-  "img-src 'self' data: https://i.scdn.co",
+  "img-src 'self' data: https://i.scdn.co https://shared.cloudflare.steamstatic.com",
   "connect-src 'self' https://cdn.jsdelivr.net",
   "object-src 'none'",
   "base-uri 'self'",

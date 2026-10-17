@@ -50,8 +50,8 @@ function NowPlaying({ track, captions }) {
             className="about-now-art"
             src={track.image}
             alt=""
-            width="48"
-            height="48"
+            width="72"
+            height="72"
           />
         )}
         <span className="about-now-text">
@@ -95,8 +95,8 @@ function ArtistList({ caption, artists }) {
                 className="about-artist-art"
                 src={artist.image}
                 alt=""
-                width="28"
-                height="28"
+                width="40"
+                height="40"
               />
             )}
             <MaybeLink className="about-line-main" href={artist.url}>
@@ -204,7 +204,16 @@ function InterestsPage() {
           <p className="about-panel-note">{steamView.caption}</p>
           <div className="about-list">
             {steamView.recentGames.map((game) => (
-              <div className="about-line" key={game.name}>
+              <div className="about-line about-game" key={game.name}>
+                {game.image && (
+                  <img
+                    className="about-game-art"
+                    src={game.image}
+                    alt=""
+                    width="80"
+                    height="30"
+                  />
+                )}
                 <span className="about-line-main">{game.name}</span>
                 <span className="about-line-sub">{game.detail}</span>
               </div>

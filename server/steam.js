@@ -4,6 +4,10 @@
 const API_URL = 'https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/'
 const LIMIT = Number(process.env.STEAM_LIMIT || 4)
 
+// Steam's store capsule art, keyed by app id. No API key needed.
+const capsuleUrl = (appid) =>
+  `https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/${appid}/capsule_231x87.jpg`
+
 function requireEnv() {
   const key = process.env.STEAM_API_KEY
   const steamId = process.env.STEAM_ID
@@ -45,6 +49,7 @@ export async function getSteamStats() {
     recentGames: games.map((game) => ({
       name: game.name,
       detail: describePlaytime(game.playtime_2weeks),
+      image: capsuleUrl(game.appid),
     })),
     updatedAt: new Date().toISOString(),
   }

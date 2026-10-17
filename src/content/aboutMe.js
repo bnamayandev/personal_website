@@ -31,10 +31,26 @@ export const aboutMe = {
   steam: {
     caption: "Recently played",
     recentGames: [
-      { name: "PUBG", detail: "with friends" },
-      { name: "Liftoff", detail: "FPV practice" },
-      { name: "CS2", detail: "ranked grind" },
-      { name: "Phasmophobia", detail: "late nights" },
+      {
+        name: "PUBG",
+        detail: "with friends",
+        image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/578080/capsule_231x87.jpg",
+      },
+      {
+        name: "Liftoff",
+        detail: "FPV practice",
+        image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/410340/capsule_231x87.jpg",
+      },
+      {
+        name: "CS2",
+        detail: "ranked grind",
+        image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/730/capsule_231x87.jpg",
+      },
+      {
+        name: "Phasmophobia",
+        detail: "late nights",
+        image: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/739630/capsule_231x87.jpg",
+      },
     ],
   },
 }

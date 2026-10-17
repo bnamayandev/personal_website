@@ -632,11 +632,33 @@ a.contact-value:hover {
 
 .about-artist-art {
   flex: 0 0 auto;
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 1px solid var(--line-soft);
   object-fit: cover;
+}
+
+/* Steam capsules are wide (231x87), so they sit as a short banner. */
+.about-game {
+  align-items: center;
+  gap: 12px;
+  padding: 7px 0;
+}
+
+.about-game-art {
+  flex: 0 0 auto;
+  width: 80px;
+  height: 30px;
+  border-radius: 2px;
+  border: 1px solid var(--line-soft);
+  object-fit: cover;
+}
+
+/* Live details run long ("12 hrs in the last two weeks"), so let them wrap. */
+.about-game .about-line-sub {
+  margin-left: auto;
+  white-space: normal;
 }
 
 .about-link,
@@ -680,8 +702,8 @@ a.contact-value:hover {
 
 .about-now-art {
   flex: 0 0 auto;
-  width: 48px;
-  height: 48px;
+  width: 72px;
+  height: 72px;
   border-radius: 2px;
   border: 1px solid var(--line-soft);
   object-fit: cover;
