@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link, Route, Routes } from 'react-router-dom'
 
 import BajaEcomPage from './features/bajaecom/BajaEcomPage'
@@ -11,23 +12,64 @@ import AsciiBackground from './features/background/AsciiBackground'
 import ColorOfTheDay from './shared/components/ColorOfTheDay'
 import { experiences, projects, socialLinks } from './content/portfolio'
 
+function SocialsMenu() {
+  const [open, setOpen] = useState(false)
+  const menuRef = useRef(null)
+
+  useEffect(() => {
+    if (!open) return undefined
+
+    const handlePointerDown = (event) => {
+      if (!menuRef.current?.contains(event.target)) setOpen(false)
+    }
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setOpen(false)
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown)
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [open])
+
+  return (
+    <div ref={menuRef} className={`topnav-menu${open ? ' is-open' : ''}`}>
+      <button
+        type="button"
+        className="topnav-link topnav-menu-toggle"
+        aria-haspopup="true"
+        aria-expanded={open}
+        onClick={() => setOpen((value) => !value)}
+      >
+        socials
+      </button>
+      <div className="topnav-dropdown">
+        {socialLinks.map((link) => (
+          <a
+            key={link.label}
+            className="topnav-link topnav-dropdown-link"
+            href={link.href}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => setOpen(false)}
+          >
+            {link.label.toLowerCase()}
+          </a>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function TopNav() {
   return (
     <nav className="topnav" aria-label="Primary">
       <Link className="topnav-mark" to="/">benjamin namayandeh</Link>
       <div className="topnav-links">
         <Link className="topnav-link" to="/interests">interests</Link>
-        {socialLinks.map((link) => (
-          <a
-            key={link.label}
-            className="topnav-link"
-            href={link.href}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {link.label.toLowerCase()}
-          </a>
-        ))}
+        <SocialsMenu />
       </div>
     </nav>
   )

@@ -149,6 +149,59 @@ a {
   color: var(--accent);
 }
 
+.topnav-menu {
+  position: relative;
+}
+
+.topnav-menu-toggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.topnav-menu.is-open .topnav-menu-toggle {
+  color: var(--accent);
+}
+
+.topnav-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 20;
+  display: none;
+  flex-direction: column;
+  min-width: 120px;
+  margin-top: 10px;
+  padding: 6px 0;
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+
+/* Invisible bridge so the menu stays open while the cursor crosses the gap */
+.topnav-dropdown::before {
+  content: '';
+  position: absolute;
+  inset: -11px 0 auto;
+  height: 11px;
+}
+
+.topnav-menu.is-open .topnav-dropdown {
+  display: flex;
+}
+
+@media (hover: hover) {
+  .topnav-menu:hover .topnav-dropdown {
+    display: flex;
+  }
+}
+
+.topnav-dropdown-link {
+  padding: 6px 14px;
+  text-align: right;
+}
+
 /* ------------------------------------------------------------------ Hero */
 
 .hero {

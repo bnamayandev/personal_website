@@ -78,11 +78,15 @@ export const reposHref = "https://github.com/bnamayandev?tab=repositories";
 
 export const socialLinks = [
   {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/benjamin-namayandeh/",
+  },
+  {
     label: "GitHub",
     href: "https://github.com/bnamayandev",
   },
   {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/benjamin-namayandeh/",
+    label: "X",
+    href: "https://x.com/namayandev",
   },
 ];
