@@ -2,6 +2,7 @@ export const experiences = [
   {
     role: "Software Engineer Intern",
     company: "Ontario Teachers' Pension Plan",
+    logo: "/logos/otpp.svg",
     location: "Toronto, Ontario",
     start: "2026-09",
     end: "present",
@@ -9,6 +10,7 @@ export const experiences = [
   {
     role: "Software Engineer Intern",
     company: "Royal Bank of Canada",
+    logo: "/logos/rbc.svg",
     location: "Toronto, Ontario",
     start: "2026-01",
     end: "2026-04",
@@ -16,6 +18,7 @@ export const experiences = [
   {
     role: "Research Assistant",
     company: "Western University",
+    logo: "/logos/western.svg",
     location: "London, Ontario",
     start: "2025-05",
     end: "2025-09",

@@ -346,9 +346,45 @@ a {
 .timeline-item {
   position: relative;
   display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 32px;
+}
+
+.exp-body {
+  display: flex;
   flex-direction: column;
   gap: 4px;
-  padding-bottom: 32px;
+  min-width: 0;
+}
+
+.exp-logo {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-top: 2px;
+}
+
+.exp-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.exp-logo-initial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
 .timeline-item:last-child {

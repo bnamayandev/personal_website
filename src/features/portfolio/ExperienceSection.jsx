@@ -31,12 +31,21 @@ function ExperienceSection({ number, experiences }) {
         {experiences.map((experience) => (
           <li key={`${experience.company}-${experience.role}`} className="timeline-item">
             <span className="timeline-dot" aria-hidden="true" />
-            <span className="ledger-meta">{formatPeriod(experience.start, experience.end)}</span>
-            <span className="exp-role">{experience.role}</span>
-            <p className="exp-sub">
-              {experience.company}
-              {experience.location ? ` · ${experience.location}` : ''}
-            </p>
+            <span className="exp-logo" aria-hidden="true">
+              {experience.logo ? (
+                <img src={experience.logo} alt="" loading="lazy" />
+              ) : (
+                <span className="exp-logo-initial">{experience.company.charAt(0)}</span>
+              )}
+            </span>
+            <div className="exp-body">
+              <span className="ledger-meta">{formatPeriod(experience.start, experience.end)}</span>
+              <span className="exp-role">{experience.role}</span>
+              <p className="exp-sub">
+                {experience.company}
+                {experience.location ? ` · ${experience.location}` : ''}
+              </p>
+            </div>
           </li>
         ))}
       </ol>
